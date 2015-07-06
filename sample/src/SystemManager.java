@@ -11,9 +11,9 @@ public class SystemManager {
     private ClientList clist;  // 顧客のリスト
     private WorkList wlist;    // 稼働のリスト
 
-    private String pfilename = "person.csv";
-    private String cfilename = "client.csv";
-    private String wfilename = "work.csv";
+    private String pfilename = "sample/src/person.csv";
+    private String cfilename = "sample/src/client.csv";
+    private String wfilename = "sample/src/work.csv";
 
     private ConsoleStatus sts1, sts2;
     private DisplayPersonStatus sts5, sts5_2;
