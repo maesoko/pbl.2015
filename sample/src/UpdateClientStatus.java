@@ -11,7 +11,7 @@ public class UpdateClientStatus extends ConsoleStatus {
 	private ClientList cl;
 
 	private String[] messages = {
-		"1.会社名\t\t\t2.住所\n",
+		"1.顧客名\t\t\t2.住所\n",
 		"3.電話番号\n"
 	};
 	private String data;
@@ -40,7 +40,7 @@ public class UpdateClientStatus extends ConsoleStatus {
 		int id, no, num;
 
 		// IDの入力
-		System.out.print( "会社IDを入力してください。\n>" );
+		System.out.print( "顧客IDを入力してください。\n>" );
 		data = inputMessage();
 		try {
 			id = Integer.parseInt( data ); // 従業員ID
@@ -53,7 +53,7 @@ public class UpdateClientStatus extends ConsoleStatus {
 
 		Client c = cl.get( id );
 		if( c == null ) {
-			System.out.println( "指定のIDの会社は存在しません。" );
+			System.out.println( "指定のIDの顧客は存在しません。" );
 			System.out.println( "再入力してください。" );
 			displayFirstMess();
 			return;

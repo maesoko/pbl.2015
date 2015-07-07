@@ -9,7 +9,7 @@ public class AddClientStatus extends ConsoleStatus {
 	private ClientList cl;
 
 	private String[] messages = {
-		"会社名を入力してください。>",
+		"顧客名を入力してください。>",
 		"住所を入力してください。>",
 		"電話番号を入力してください。>",
 	};
