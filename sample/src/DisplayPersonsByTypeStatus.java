@@ -56,10 +56,11 @@ public class DisplayPersonsByTypeStatus extends ConsoleStatus {
 		selectedList = plist.searchByTypes( work );
 		// selectedListの件数＝0ならば当該職種をもつ
 		// 従業員はいないと表示
-		if( selectedList.size() <= 0 )
+		if( selectedList.size() <= 0 ){
 			System.out.println( "従業員が存在しません。" );
-		else
+		} else {
 			selectedList.allDisplay();
+		}
 	}
 
 	// 次の状態に遷移することを促すためのメッセージの表示
