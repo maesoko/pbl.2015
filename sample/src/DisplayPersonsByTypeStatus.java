@@ -1,6 +1,10 @@
 /* DisplayPersonsByTypeStatus.java
  */
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
+
 /* DisplayPersonsByTypeStatus
  */
 public class DisplayPersonsByTypeStatus extends ConsoleStatus {
@@ -50,7 +54,7 @@ public class DisplayPersonsByTypeStatus extends ConsoleStatus {
 	/**
 	 * displayList
 	 */
-	public void displayList() {
+	public void displayList() throws Exception {
 		// 入力された職種をもつ従業員のレコードだけを
 		// selectedListに取り出す
 		selectedList = plist.searchByTypes( work );
@@ -59,7 +63,10 @@ public class DisplayPersonsByTypeStatus extends ConsoleStatus {
 		if( selectedList.size() <= 0 ){
 			System.out.println( "従業員が存在しません。" );
 		} else {
-			selectedList.allDisplay();
+            IntStream.range(0, selectedList.size())
+                    .mapToObj(selectedList::getRecord)
+                    .limit(3)
+                    .forEach(System.out::println);
 		}
 	}
 
