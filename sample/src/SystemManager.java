@@ -216,16 +216,11 @@ public class SystemManager {
         sts2.setNextStatus("E", sts1);
 
         sts4.setNextStatus("E", sts2);
-        sts4.setNextStatus("P", sts7);
-        sts4.setNextStatus("N", sts7);
 
         sts5.setNextStatus(" ", sts4);
         sts5_2.setNextStatus(" ", sts7);
 
         sts7.setNextStatus("E", sts2);
-        sts7.setNextStatus("P", sts7);
-        sts7.setNextStatus("N", sts7);
-
 
         sts8.setNextStatus(" ", sts1);
 
