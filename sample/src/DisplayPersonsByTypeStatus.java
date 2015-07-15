@@ -72,39 +72,44 @@ public class DisplayPersonsByTypeStatus extends ConsoleStatus {
         // 従業員はいないと表示
         if (selectedList.size() <= 0 && code.isEmpty()) {
             System.out.println("従業員が存在しません。");
-        } else if (isInitDisp || selectedList.size() <= 3) {
+            return;
+        }
+
+        if (isInitDisp || selectedList.size() <= 3) {
             IntStream.range(0, selectedList.size())
                     .mapToObj(selectedList::getRecord)
                     .limit(PAGE)
                     .forEach(System.out::println);
             return;
-        } else if (code.equals("P")) {
-            if (idx - PAGE  == -3) {
-                idx = selectedList.size() - PAGE;
-            } else if (idx - PAGE >= 0) {
-                idx -= PAGE;
-            } else {
-                IntStream.range(0, idx)
-                        .mapToObj(selectedList::getRecord)
-                        .forEach(System.out::println);
-                idx -= PAGE;
-                return;
+        }
+
+        if (!code.isEmpty()) {
+            if (code.equals("P")) {
+                if (idx - PAGE == -3) {
+                    idx = selectedList.size() - PAGE;
+                } else if (idx - PAGE >= 0) {
+                    idx -= PAGE;
+                } else {
+                    IntStream.range(0, idx)
+                            .mapToObj(selectedList::getRecord)
+                            .forEach(System.out::println);
+                    idx = 0;
+                    return;
+                }
+            }
+
+            if (code.equals("N")) {
+                if (idx + PAGE >= selectedList.size()) {
+                    idx = 0;
+                } else {
+                    idx += PAGE;
+                }
             }
 
             IntStream.range(idx, selectedList.size())
                     .mapToObj(selectedList::getRecord)
                     .limit(PAGE)
                     .forEach(System.out::println);
-        } else if (code.equals("N")) {
-            if (idx + PAGE >= selectedList.size()) {
-                idx = 0;
-            } else {
-                idx += PAGE;
-                IntStream.range(idx, selectedList.size())
-                        .mapToObj(selectedList::getRecord)
-                        .limit(PAGE)
-                        .forEach(System.out::println);
-            }
         }
     }
 
@@ -118,7 +123,7 @@ public class DisplayPersonsByTypeStatus extends ConsoleStatus {
      */
     public ConsoleStatus getNextStatus(String s) {
         isInitDisp = false;
-        if (s.equals("P") || s.equals("N")) {
+        if ((s.equals("P") || s.equals("N")) && selectedList.size() > 3) {
             displayList(s);
             return this;
         } else if(s.equals("E")) {
